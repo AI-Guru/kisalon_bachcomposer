@@ -1,0 +1,40 @@
+<!-- A page that asks for your auth token -->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title>Composer</title>
+        <script src="https://kit.fontawesome.com/d6e88637ad.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="/static/style.css" />
+        <script src="{{ url_for('static', filename='script.js') }}"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    </head>
+
+    <body>
+        
+        <!-- A form that asks for your auth token -->
+        <div class="glowtext">
+            <form method="post" action="auth" id="auth">
+                <input type="text" name="auth_token" placeholder="Auth Token" autocomplete="current-password" type="password">
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+
+        <script>
+            const form  = document.getElementById('auth');
+            
+            // Store the auth token in the session.
+                form.addEventListener('submit', (event) => {
+                sessionStorage.setItem('auth_token', form.auth_token.value);
+            });
+            
+        </script>
+
+        <div class="glowtext">
+            Copyright 2022 Tristan Behrens. <a href="https://ai-guru.de/impressum/">Imprint</a>.
+        </div>
+
+    </body>
+</html>

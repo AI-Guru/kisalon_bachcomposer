@@ -1,0 +1,7 @@
+#!/usr/bin/sh
+
+#export FLASK_ENV=development 
+#export FLASK_DEBUG=1
+export FLASK_ENV=production 
+
+flask run --host=0.0.0.0 --port=5001

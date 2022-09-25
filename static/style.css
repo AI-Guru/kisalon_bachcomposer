@@ -1,0 +1,237 @@
+/* The background image does not scroll. */
+body {
+  height: 100vh;
+  width: 100vw;
+
+  /* A blurred background image. */
+  background-image: url("background.jpg");
+  background-attachment: fixed;
+}
+
+
+/* Style for select. Dark blue background. Neon magenta font. */
+select {
+  background-color: #0f0209;
+  color: #91faff;
+  border: none;
+  border-radius: 4px;
+  margin: 2px;
+  width: 16vw;
+  height: 3vh;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: 0 0 0.5em #91faff;
+  outline: none;
+  cursor: pointer;
+}
+
+/* Uses same style as select but inverted. */
+.container-buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 10vh;
+  width: 100vw;
+  overflow: hidden;
+  justify-content: center;
+}
+
+/* Style for container buttons. Neon magenta area. Dark blue font. */
+.container-buttons button {
+  color: #ffffff;
+  background-color: #91faff;
+  font-weight: bold;
+  border: none;
+  border-radius: 20px;
+  margin: 10px;
+  width: 10vw;
+  height: 4.5vh;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: 0 0 0.5em #91faff;
+  outline: none;
+  cursor: pointer;
+  margin: 10 auto;
+}
+
+/* An active button has an outline. */
+.container-buttons .button-active {
+  color: #000000;
+  outline: 2px solid #000000;
+  background-color: #91faff;
+  text-shadow: 0 0 0.0em #ffffff;
+}
+
+/* Style for inactive buttons. */
+.container-buttons .button-inactive {
+  color: #000000;
+  background-color: #128e94;
+  text-shadow: 0 0 0.0em #ffffff;
+}
+
+.voicebutton {
+  width: 75pt;
+  height: 55pt;
+  margin: 0px;
+}
+
+/* Style for the audio player. */
+audio {
+  width: 40vw;
+  height: 4.5vh;
+  border-radius: 20px;
+}
+
+/* Center on screen. */
+.controls {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+/* Center on screen. */
+.container-main {
+    display: grid;
+    grid-gap: 0;
+    margin-top: 20px;
+    grid-template-columns: repeat(10, 100pt);
+}
+
+.item {
+    /* Center the contents of the grid items. Making each grid item a Flex Container */
+    display: flex;
+
+    /* Horizontal and Vertical centering */
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--primary-color);
+    border-radius: 0;
+    font-size: 1em;
+    font-family: sans-serif;
+    /*color: white;
+    background-color: rgba(255, 123, 0, 0.055);*/
+}
+
+/* Class for SVGs. Centered. Glowing border. */
+.svg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--primary-color);
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: 0 0 0.5em #91faff;
+  outline: none;
+  cursor: pointer;
+}
+
+/* Class for tokens. White font. Monospaced font. Scrollable. */
+.glowtext {
+  font-family: monospace;
+  font-size: 1em;
+  color: #ffffff;
+  background-color: #00000052;
+  border: 1px solid var(--primary-color);
+  border-radius: 0;
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: 0 0 0.5em #91faff;
+  outline: none;
+  cursor: pointer;
+  overflow-y: scroll;
+  box-shadow: 0 0 0.5em #000000;
+}
+
+#overlay {
+  position: fixed; /* Sit on top of the page content */
+  display: None; /* Hidden by default */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
+}
+
+.checkbox-glow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--primary-color);
+  border-radius: 0;
+  font-size: 1em;
+  font-family: sans-serif;
+  color: #ffffff;
+  background-color: #00000052;
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: 0 0 0.5em #91faff;
+  outline: none;
+  cursor: pointer;
+}
+
+/** Style for divs that blurs everything that lies below the div. */
+.blur {
+  backdrop-filter: blur(4px);
+  z-index: 10;
+}
+
+/* Style for the img that contains the song cover. 
+  The border is black.
+  It drops a shadow.
+*/
+.songimage {
+  border: 1px solid #000000;
+  box-shadow: 0 0 0.5em #000000;
+  width: 256pt;
+  height: 256pt;
+}
+
+
+@media (max-width: 1340px) {
+  .container-main {
+    grid-template-columns: repeat(2, 120pt);
+}
+.container-buttons {
+  display: contents;
+  justify-content: center;
+}
+
+select {
+  width: 23vw;
+  height: 5vh;
+}
+
+.container-buttons button {
+  width: 30vw;
+  height: 7vh;
+}
+
+audio {
+  margin-left:10vw;
+  width: 80vw;
+  height: 7vh;
+  text-align: center;
+}
+
+.button-left{
+  text-align: center;
+}
+
+.button-center{
+  text-align: center;
+}
+
+}

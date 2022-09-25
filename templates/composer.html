@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Composer</title>
+    <script src="https://kit.fontawesome.com/d6e88637ad.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/static/style.css" />
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  </head>
+
+  <body>
+
+    <div id="overlay">
+        <div class="glowtext blur" style="margin:10px">
+            Composing...
+        </div>
+    </div>
+
+
+    <div class="glowtext ">
+        <h1>Neuro Kybernetik Bach</h1>
+        <h2>Ein Exponat von Dr. Tristan Behrens zur Eröffnung des KI Salons Heilbronn im Oktober 2022</h2>
+    </div>
+
+    <div class="glowtext blur" style="display:flex; flex-direction: row; justify-content: center; align-items: center; height:250pt;">
+        
+        <div class>
+            <img src="/images/songimage" class="songimage">
+        </div>
+        
+        <div id="svg_placeholder" class="svg">
+        </div>
+
+        <div class="container-buttons" style="display:flex; flex-direction: column; height: 100%; ">
+            <div class="container-button voicebutton">
+                <button class="" onclick="redo_button_clicked(0)" style="width:50pt;height:50pt; background-color: #f5da4b;">
+                    <i class="fas fa-redo" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div class="container-button voicebutton">
+                <button class="" onclick="redo_button_clicked(3)" style="width:50pt;height:50pt; background-color: #e45b2e;">
+                    <i class="fas fa-redo" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div class="container-button voicebutton">
+                <button class="" onclick="redo_button_clicked(1)" style="width:50pt;height:50pt; background-color: #b63655;">
+                    <i class="fas fa-redo" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div class="container-button voicebutton">
+                <button class="" onclick="redo_button_clicked(2)" style="width:50pt;height:50pt; background-color: #892169;">
+                    <i class="fas fa-redo" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="glowtext blur" style="display:flex; flex-direction: row; justify-content: center; align-items: center">
+
+        <div class="container-buttons">
+            <div class="container-button">
+                <button class="select-button button-active" onclick="select_button_clicked(this)" group="instrument" value="0" style="width:125px">
+                    Piano
+                </button>
+            </div>
+            <div class="container-button">
+                <button class="select-button button-inactive" onclick="select_button_clicked(this)" group="instrument" value="6" style="width:125px">
+                    Harpsichord
+                </button>
+            </div>
+            <div class="container-button">
+                <button class="select-button button-inactive" onclick="select_button_clicked(this)" group="instrument" value="19" style="width:125px">
+                    Organ
+                </button>
+            </div>
+        </div>
+
+        <div class="container-buttons">
+            <div class="container-button">
+                <button class="select-button button-active" onclick="select_button_clicked(this)" group="tempo" value="80" style="width:125px">
+                    Slow
+                </button>
+            </div>
+            <div class="container-button">
+                <button class="select-button button-inactive" onclick="select_button_clicked(this)" group="tempo" value="100" style="width:125px">
+                    Normal
+                </button>
+            </div>
+            <div class="container-button">
+                <button class="select-button button-inactive" onclick="select_button_clicked(this)" group="tempo" value="120" style="width:125px">
+                    Fast
+                </button>
+            </div>
+        </div>
+
+        <div class="container-buttons">
+            <div class="container-button">
+                <button class="select-button button-active" onclick="select_button_clicked(this, recompose=true)" group="temperature" value="0.5" style="width:125px">
+                    Repetitive
+                </button>
+            </div>
+            <div class="container-button">
+                <button class="select-button button-inactive" onclick="select_button_clicked(this, recompose=true)" group="temperature" value="0.75" style="width:125px">
+                    Assertive
+                </button>
+            </div>
+            <div class="container-button">
+                <button class="select-button button-inactive" onclick="select_button_clicked(this, recompose=true)" group="temperature" value="1.0" style="width:125px">
+                    Experimental
+                </button>
+            </div>
+        </div>
+
+        <div class="container-buttons">
+            <div class="container-button">
+                <button class="select-button button-active" onclick="select_button_clicked(this, recompose=true)" group="density" value="3" style="width:125px">
+                    Few
+                </button>
+            </div>
+            <div class="container-button">
+                <button class="select-button button-inactive" onclick="select_button_clicked(this, recompose=true)" group="density" value="6" style="width:125px">
+                    Many
+                </button>
+            </div>
+            <div class="container-button">
+                <button class="select-button button-inactive" onclick="select_button_clicked(this, recompose=true)" group="density" value="9" style="width:125px">
+                    A lot
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- A div that aligns its children left to right. There is a distance between. -->
+    <div class="glowtext blur">
+        <audio id="audio" controls>
+            <source src="" type="audio/mpeg" style="width:125px">
+        </audio>
+    </div>
+
+    <!-- hide this completely -->
+    <div class="glowtext" id="tokens_placeholder" style="display:none">
+    </div>
+
+    <!-- Script that runs when the page has loaded. -->
+    <script>
+        $(document).ready(function() {
+            compose_button_clicked();
+        });
+    </script>
+    
+</body>
+</html>
