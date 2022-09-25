@@ -3,7 +3,7 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Composer</title>
+    <title>Neuro Kybernik Bach</title>
     <script src="https://kit.fontawesome.com/d6e88637ad.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/static/style.css" />
     <script src="{{ url_for('static', filename='script.js') }}"></script>
@@ -17,13 +17,14 @@
             Composing...
         </div>
     </div>
-
-
+    
+    <!-- Titel -->
     <div class="glowtext ">
         <h1>Neuro Kybernetik Bach</h1>
         <h2>Ein Exponat von Dr. Tristan Behrens zur Eröffnung des KI Salons Heilbronn im Oktober 2022</h2>
     </div>
-
+    
+    <!-- Bild, SVG und Buttons --> 
     <div class="glowtext blur" style="display:flex; flex-direction: row; justify-content: center; align-items: center; height:250pt;">
         
         <div class>
@@ -57,10 +58,11 @@
         </div>
 
     </div>
+      
+    <!-- 4x Button Dreiergruppen -->
+    <div class="glowtext blur" style="display:flex; flex-direction: row; justify-content: center; align-items: center;">
 
-    <div class="glowtext blur" style="display:flex; flex-direction: row; justify-content: center; align-items: center">
-
-        <div class="container-buttons">
+        <div class="container-buttons" style="flex-direction: column;">
             <div class="container-button">
                 <button class="select-button button-active" onclick="select_button_clicked(this)" group="instrument" value="0" style="width:125px">
                     Piano
@@ -78,7 +80,7 @@
             </div>
         </div>
 
-        <div class="container-buttons">
+        <div class="container-buttons" style="flex-direction: column;">
             <div class="container-button">
                 <button class="select-button button-active" onclick="select_button_clicked(this)" group="tempo" value="80" style="width:125px">
                     Slow
@@ -96,7 +98,7 @@
             </div>
         </div>
 
-        <div class="container-buttons">
+        <div class="container-buttons" style="flex-direction: column;">
             <div class="container-button">
                 <button class="select-button button-active" onclick="select_button_clicked(this, recompose=true)" group="temperature" value="0.5" style="width:125px">
                     Repetitive
@@ -114,7 +116,7 @@
             </div>
         </div>
 
-        <div class="container-buttons">
+        <div class="container-buttons" style="flex-direction: column;">
             <div class="container-button">
                 <button class="select-button button-active" onclick="select_button_clicked(this, recompose=true)" group="density" value="3" style="width:125px">
                     Few
@@ -131,7 +133,15 @@
                 </button>
             </div>
         </div>
-
+        
+        <!-- Test für zwei weitere Blöcke -->
+        <div class="test-buttons">
+            <button><i class="fas fa-play"></i></button>
+        </div>
+        
+        <div class="test-buttons">
+            <button><i class="fas fa-redo" aria-hidden="true"></i></button>
+        </div>
     </div>
 
 

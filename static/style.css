@@ -30,7 +30,7 @@ select {
   display: flex;
   flex-direction: row;
   align-items: center;
-  height: 10vh;
+  /*height: 10vh;*/
   width: 100vw;
   overflow: hidden;
   justify-content: center;
@@ -42,7 +42,7 @@ select {
   background-color: #91faff;
   font-weight: bold;
   border: none;
-  border-radius: 20px;
+  border-radius: 20px; 
   margin: 10px;
   width: 10vw;
   height: 4.5vh;
@@ -54,10 +54,37 @@ select {
   margin: 10 auto;
 }
 
+.test-buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /*height: 10vh;*/
+  width: 100vw;
+  overflow: hidden;
+  justify-content: center;  
+}
+
+.test-buttons button {
+  color: black;
+  background-color: #91faff;
+  font-weight: bold;
+  font-size:large;
+  border: none;
+  border-radius: 20px;
+  margin: 10px;
+  width: 10vw;
+  height: 20vh;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  cursor: pointer;
+  margin: 10 auto;
+}
+
 /* An active button has an outline. */
 .container-buttons .button-active {
   color: #000000;
-  outline: 2px solid #000000;
+  /* outline: 2px solid #000000; */
   background-color: #91faff;
   text-shadow: 0 0 0.0em #ffffff;
 }
@@ -200,23 +227,25 @@ audio {
 }
 
 
-@media (max-width: 1340px) {
+/* @media (max-width: 1340px) {
   .container-main {
     grid-template-columns: repeat(2, 120pt);
 }
+
 .container-buttons {
   display: contents;
   justify-content: center;
+}
+    
+
+.container-buttons button {
+  width: 30vw;
+  height: 7vh;
 }
 
 select {
   width: 23vw;
   height: 5vh;
-}
-
-.container-buttons button {
-  width: 30vw;
-  height: 7vh;
 }
 
 audio {
@@ -234,4 +263,5 @@ audio {
   text-align: center;
 }
 
-}
+
+} */

@@ -72,6 +72,11 @@ tokenizer = AutoTokenizer.from_pretrained(tokenizer_path)
 model_path = "TristanBehrens/js-fakes-4bars"
 model = AutoModelForCausalLM.from_pretrained(model_path).to(device)
 
+min_pitch = 24
+max_pitch = 96
+scale_x = 1000.0
+scale_y = 500.0
+
 
 # Get all the tokens in the tokenizer.
 all_tokens = tokenizer.get_vocab()
@@ -249,7 +254,7 @@ def execute_command(command_name, command_parameters, authorization_token):
         audio_data_base64 = encode_audio_base64(audio_data, sample_rate)
 
         # Turn the note sequence into a svg.
-        svg_string = note_sequence_to_svg(note_sequence, bpm)
+        svg_string = note_sequence_to_svg(note_sequence, bpm, min_pitch=min_pitch, max_pitch=max_pitch, scale_x=scale_x, scale_y=scale_y)
 
         # Play the note sequence.
         #play_note_sequence(note_sequence, sound_font_path)
@@ -275,7 +280,7 @@ def execute_command(command_name, command_parameters, authorization_token):
             note.program = instrument
         audio_data, sample_rate = note_sequence_to_audio(note_sequence)
         audio_data_base64 = encode_audio_base64(audio_data, sample_rate)
-        svg_string = note_sequence_to_svg(note_sequence, bpm)
+        svg_string = note_sequence_to_svg(note_sequence, bpm, min_pitch=min_pitch, max_pitch=max_pitch, scale_x=scale_x, scale_y=scale_y)
         return jsonify(
             {
                 "status": "OK",

@@ -9,19 +9,23 @@ if [ $1 == "hordak" ]; then
     USERNAME=hordak
     HOST=192.168.2.111
     PORT=22
-    TARGETPATH=Development/chordcomposer
+    TARGETPATH=Development/kisalon_bachcomposer
     SERVERURL=welt.de
 elif [ $1 == "bruno" ]; then
+    echo "NO!"
+    exit
     USERNAME=tristan
     HOST=6uay30l3zpqwv5eg.myfritz.net
     PORT=3322
-    TARGETPATH=Development/chordcomposer
+    TARGETPATH=Development/kisalon_bachcomposer
     SERVERURL=http://6uay30l3zpqwv5eg.myfritz.net:3313
 elif [ $1 == "studio" ]; then
+    echo "NO!"
+    exit
     USERNAME=tristan
     HOST=6uay30l3zpqwv5eg.myfritz.net
     PORT=3323
-    TARGETPATH=Development/chordcomposer
+    TARGETPATH=Development/kisalon_bachcomposer
     SERVERURL=http://6uay30l3zpqwv5eg.myfritz.net:3308
 
 elif [ $1 == "local" ]; then
@@ -47,13 +51,34 @@ if [ $2 = "uploadapp" ]; then
     ssh -p $PORT $USERNAME@$HOST "mkdir -p $TARGETPATH/source"
     ssh -p $PORT $USERNAME@$HOST "mkdir -p $TARGETPATH/templates"
     ssh -p $PORT $USERNAME@$HOST "mkdir -p $TARGETPATH/static"
+  
     scp -P $PORT app.py $USERNAME@$HOST:$TARGETPATH
-    scp -P $PORT instruments_synth.json $USERNAME@$HOST:$TARGETPATH
-    scp -P $PORT chord_progressions.json $USERNAME@$HOST:$TARGETPATH
+    scp -P $PORT startserver_dev.sh $USERNAME@$HOST:$TARGETPATH
+    scp -P $PORT active_tokens.txt $USERNAME@$HOST:$TARGETPATH
+  
     scp -P $PORT source/*.py $USERNAME@$HOST:$TARGETPATH/source
+    #scp -P $PORT templates/*.html $USERNAME@$HOST:$TARGETPATH/templates
+    #scp -P $PORT static/*.css $USERNAME@$HOST:$TARGETPATH/static
+    #scp -P $PORT static/*.js $USERNAME@$HOST:$TARGETPATH/static
+    #scp -P $PORT static/background.jpg $USERNAME@$HOST:$TARGETPATH/static
+    #scp -P $PORT static/songimage.jpg $USERNAME@$HOST:$TARGETPATH/static
+
+fi
+
+# Download webapp.
+if [ $2 = "downloadweb" ]; then
+    scp -P $PORT $USERNAME@$HOST:$TARGETPATH/templates/*.html ./templates
+    scp -P $PORT $USERNAME@$HOST:$TARGETPATH/static/*.css ./static
+    scp -P $PORT $USERNAME@$HOST:$TARGETPATH/static/*.js ./static
+fi
+
+# Upload webapp.
+if [ $2 = "uploadweb" ]; then
     scp -P $PORT templates/*.html $USERNAME@$HOST:$TARGETPATH/templates
     scp -P $PORT static/*.css $USERNAME@$HOST:$TARGETPATH/static
     scp -P $PORT static/*.js $USERNAME@$HOST:$TARGETPATH/static
+    scp -P $PORT static/background.jpg $USERNAME@$HOST:$TARGETPATH/static
+    scp -P $PORT static/songimage.jpg $USERNAME@$HOST:$TARGETPATH/static
 fi
 
 # If argument is "uploadcredentials", then upload credentials.

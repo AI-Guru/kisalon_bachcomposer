@@ -168,7 +168,7 @@ def empty_note_sequence(qpm=120.0, total_time=0.0):
     return note_sequence
 
 
-def note_sequence_to_svg(note_sequence, bpm):
+def note_sequence_to_svg(note_sequence, bpm, min_pitch=0, max_pitch=128, scale_x=1000.0, scale_y=500.0):
 
     # Make sure that the end_time is correct.
     for note in note_sequence.notes:
@@ -183,8 +183,8 @@ def note_sequence_to_svg(note_sequence, bpm):
     # Each list of notes is a bar.
 
     # Create an empty SVG.
-    scale_x = 1000.0
-    scale_y = 500.0
+    #scale_x = 1000.0
+    #scale_y = 500.0
 
     colors = ["orchid", "magenta", "violet", "hotpink"]
     colors = ["#f5da4b", "#b63655", "#892169", "#e45b2e"]
@@ -206,8 +206,10 @@ def note_sequence_to_svg(note_sequence, bpm):
     #        )
     #    )
 
+    pitch_range = max_pitch - min_pitch
+
     for note in note_sequence.notes:
-        pitch = note.pitch
+        pitch = note.pitch - min_pitch
         start_time = note.start_time
         end_time = note.end_time
         if note.is_drum:
@@ -216,8 +218,8 @@ def note_sequence_to_svg(note_sequence, bpm):
         svg_document.add(
             # Make the rect glow.
             svgwrite.shapes.Rect(
-                insert = (scale_x * start_time / note_sequence.total_time, scale_y * (128 - pitch) / 128),
-                size = (scale_x *   (end_time - start_time) / note_sequence.total_time, 2 * scale_y / 128),
+                insert = (scale_x * start_time / note_sequence.total_time, scale_y * (pitch_range - pitch) / pitch_range),
+                size = (scale_x *   (end_time - start_time) / note_sequence.total_time, 2 * scale_y / pitch_range),
                 fill = colors[note.instrument],
                 rx = 2.0,
             )
