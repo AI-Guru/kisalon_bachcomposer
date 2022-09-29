@@ -157,6 +157,9 @@ def token_sequence_to_note_sequence(token_sequence, bpm, use_program=True, use_d
         if note.end_time > note_sequence.total_time:
             note_sequence.total_time = note.end_time
 
+    # Play a little longer.
+    note_sequence.total_time += 2.0
+
     return note_sequence
 
 

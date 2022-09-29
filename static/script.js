@@ -224,7 +224,7 @@ function play_button_clicked() {
 function composer_loaded() {
     
     set_toolbar_visibility(false, false);
-
+    compose_button_clicked();
 
 
 }
@@ -241,17 +241,20 @@ function set_toolbar_visibility(visible, animate=true) {
         console.log("Hiding toolbar.");
 
         if (animate == false) {
-            toolbar.style.display = "none";
+            //toolbar.style.display = "none";
+            toolbar.style.opacity = 0;
         }
         else {
-            toolbar.style.display = "block";
+            //toolbar.style.display = "block";
             toolbar.style.opacity = 1;
             toolbar.style.transition = "opacity 2.0s";
             toolbar.style.opacity = 0;
             setTimeout(function() {
-                toolbar.style.display = "none";
+                //toolbar.style.display = "none";
             }, 2000);
         }
+
+        start_or_reset_compose_timer();
 
         // Make sure that only the body gets the onclick event.
         document.body.onclick = function(event) {
@@ -265,19 +268,22 @@ function set_toolbar_visibility(visible, animate=true) {
         console.log("Showing toolbar.");
 
         if (animate == false) {
-            toolbar.style.display = "block";
+            //toolbar.style.display = "block";
+            toolbar.style.opacity = 1;
         }
         else {
-            toolbar.style.display = "block";
+            //toolbar.style.display = "block";
             toolbar.style.opacity = 0;
             toolbar.style.transition = "opacity 2.0s";
             toolbar.style.opacity = 1;
             setTimeout(function() {
-                toolbar.style.display = "block";
+                //toolbar.style.display = "block";
             }, 2000);
         }
 
         start_or_reset_hide_toolbar_timer();
+
+        stop_compose_timer();
 
         // Make that the event gets propagated beyond the body.
         // Also ensure that the timer gets deleted and started again.
@@ -299,6 +305,24 @@ function start_or_reset_hide_toolbar_timer() {
     window.hide_toolbar_timer = setTimeout(function() {
         set_toolbar_visibility(false);
     }, 5000);
+}
+
+function start_or_reset_compose_timer() {
+        
+        // If the timer is already running, do nothing.
+        if (window.compose_timer != null) {
+            clearTimeout(window.compose_timer);
+        }
+    
+        // Start a new timer.
+        window.compose_timer = setTimeout(function() {
+            compose_button_clicked();
+            start_or_reset_compose_timer();
+        }, 20000);
+}
+
+function stop_compose_timer() {
+    clearTimeout(window.compose_timer);
 }
 
 function is_toolbar_hidden() {
