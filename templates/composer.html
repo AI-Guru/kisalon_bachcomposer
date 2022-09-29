@@ -19,9 +19,11 @@
     </div>
     
     <!-- Titel -->
-    <div class="glowtext ">
+    <div class="glowtext blur">
         <h1>Neuro Kybernetik Bach</h1>
         <h2>Ein Exponat von Dr. Tristan Behrens zur Eröffnung des KI Salons Heilbronn im Oktober 2022</h2>
+        <p>Das menschliche Gehirn verfügt über eine Trillion Synapsen. Das Neuronale Netz, das hier komponiert, hat nur 20 Millionen Parameter. Es komponiert schneller als viele Menschen, doch kann es weder Schach spielen, noch Auto fahren.</p>
+
     </div>
     
     <!-- Bild, SVG und Buttons --> 
@@ -34,33 +36,10 @@
         <div id="svg_placeholder" class="svg">
         </div>
 
-        <div class="container-buttons" style="display:flex; flex-direction: column; height: 100%; ">
-            <div class="container-button voicebutton">
-                <button class="" onclick="redo_button_clicked(0)" style="width:50pt;height:50pt; background-color: #f5da4b;">
-                    <i class="fas fa-redo" aria-hidden="true"></i>
-                </button>
-            </div>
-            <div class="container-button voicebutton">
-                <button class="" onclick="redo_button_clicked(3)" style="width:50pt;height:50pt; background-color: #e45b2e;">
-                    <i class="fas fa-redo" aria-hidden="true"></i>
-                </button>
-            </div>
-            <div class="container-button voicebutton">
-                <button class="" onclick="redo_button_clicked(1)" style="width:50pt;height:50pt; background-color: #b63655;">
-                    <i class="fas fa-redo" aria-hidden="true"></i>
-                </button>
-            </div>
-            <div class="container-button voicebutton">
-                <button class="" onclick="redo_button_clicked(2)" style="width:50pt;height:50pt; background-color: #892169;">
-                    <i class="fas fa-redo" aria-hidden="true"></i>
-                </button>
-            </div>
-        </div>
-
     </div>
       
     <!-- 4x Button Dreiergruppen -->
-    <div class="glowtext blur" style="display:flex; flex-direction: row; justify-content: center; align-items: center;">
+    <div class="glowtext blur toolbar" style="display:flex; flex-direction: row; justify-content: center; align-items: center;">
 
         <div class="container-buttons" style="flex-direction: column;">
             <div class="container-button">
@@ -100,7 +79,7 @@
 
         <div class="container-buttons" style="flex-direction: column;">
             <div class="container-button">
-                <button class="select-button button-active" onclick="select_button_clicked(this, recompose=true)" group="temperature" value="0.5" style="width:125px">
+                <button class="select-button button-active" onclick="select_button_clicked(this, recompose=true)" group="temperature" value="0.25" style="width:125px">
                     Repetitive
                 </button>
             </div>
@@ -116,7 +95,7 @@
             </div>
         </div>
 
-        <div class="container-buttons" style="flex-direction: column;">
+        <!--div class="container-buttons" style="flex-direction: column;">
             <div class="container-button">
                 <button class="select-button button-active" onclick="select_button_clicked(this, recompose=true)" group="density" value="3" style="width:125px">
                     Few
@@ -132,21 +111,45 @@
                     A lot
                 </button>
             </div>
-        </div>
+        </div-->
         
         <!-- Test für zwei weitere Blöcke -->
         <div class="test-buttons">
-            <button><i class="fas fa-play"></i></button>
+            <button onclick="play_button_clicked()"><i class="fas fa-play"></i></button>
         </div>
         
         <div class="test-buttons">
-            <button><i class="fas fa-redo" aria-hidden="true"></i></button>
+            <button onclick="compose_button_clicked()"><i class="fas fa-redo" aria-hidden="true"></i></button>
         </div>
+
+        <div class="container-buttons" style="display:flex; flex-direction: column; height: 100%; ">
+            <div class="container-button voicebutton">
+                <button class="" onclick="redo_button_clicked(0)" style="width:50pt;height:50pt; background-color: #f5da4b;">
+                    <i class="fas fa-redo" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div class="container-button voicebutton">
+                <button class="" onclick="redo_button_clicked(3)" style="width:50pt;height:50pt; background-color: #e45b2e;">
+                    <i class="fas fa-redo" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div class="container-button voicebutton">
+                <button class="" onclick="redo_button_clicked(1)" style="width:50pt;height:50pt; background-color: #b63655;">
+                    <i class="fas fa-redo" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div class="container-button voicebutton">
+                <button class="" onclick="redo_button_clicked(2)" style="width:50pt;height:50pt; background-color: #892169;">
+                    <i class="fas fa-redo" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+
     </div>
 
 
     <!-- A div that aligns its children left to right. There is a distance between. -->
-    <div class="glowtext blur">
+    <div class="glowtext blur" style="display:none">
         <audio id="audio" controls>
             <source src="" type="audio/mpeg" style="width:125px">
         </audio>
@@ -159,7 +162,10 @@
     <!-- Script that runs when the page has loaded. -->
     <script>
         $(document).ready(function() {
-            compose_button_clicked();
+
+            composer_loaded();
+
+            //compose_button_clicked();
         });
     </script>
     

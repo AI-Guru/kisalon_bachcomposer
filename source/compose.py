@@ -3,6 +3,8 @@ import json
 def fancy_indexing(list, indices):
     return [list[index] for index in indices]
 
+DEFAULT_DENSITY = 6
+
 class Composer:
 
     def __init__(self, tokenizer, model, device):
@@ -12,6 +14,8 @@ class Composer:
         self.number_of_bars = 4
 
     def compose_song(self, command_parameters):
+
+        print(command_parameters["temperature"])
 
         instrument_tokens = ["INST=0", "INST=24", "INST=32", "INST=48"]
 
@@ -24,7 +28,8 @@ class Composer:
         # Get the temperature.
         temperature = float(command_parameters["temperature"])
 
-        density = int(command_parameters["density"])
+        #density = int(command_parameters["density"])
+        density = DEFAULT_DENSITY
 
         # Go through all instruments.
         for instrument_index in range(len(song_data["instrument_tokens"])):
@@ -43,7 +48,7 @@ class Composer:
 
         # Check if everything is there.
         assert "redo_instrument_index" in command_parameters
-        assert "density" in command_parameters
+        #assert "density" in command_parameters
         assert "token_sequence" in command_parameters
         assert "temperature" in command_parameters
         assert "density" in command_parameters
@@ -69,7 +74,8 @@ class Composer:
         temperature = float(command_parameters["temperature"])
 
         # Get the density.
-        density = int(command_parameters["density"])
+        #density = int(command_parameters["density"])
+        density = DEFAULT_DENSITY
 
         # Now comes the actual recomposition.
         # Go through all bars.
@@ -180,6 +186,7 @@ class Composer:
         eos_token_id = self.tokenizer.encode(end_token)[0] if "end_token" != None else None
 
         # Generate.
+        print(temperature)
         generated_token_sequence = self.model.generate(
             input_ids,
             max_length=2048,

@@ -6,14 +6,14 @@ function compose_button_clicked() {
     var temperature = get_select_button_value("temperature");
     var instrument = get_select_button_value("instrument");
     var bpm = get_select_button_value("tempo");
-    var density = get_select_button_value("density");
+    //var density = get_select_button_value("density");
 
     // Put everything into a JSON object.
     var json_object = {
         "instrument": instrument,
         "bpm": bpm,
         "temperature": temperature,
-        "density": density
+        //"density": density
     };
 
     // Post the command.
@@ -29,7 +29,7 @@ function redo_button_clicked(redo_instrument_index) {
     var temperature = get_select_button_value("temperature");
     var instrument = get_select_button_value("instrument");
     var bpm = get_select_button_value("tempo");
-    var density = get_select_button_value("density");
+    //var density = get_select_button_value("density");
 
     // Get token sequence.
     var token_sequence = document.getElementById("tokens_placeholder").innerHTML;
@@ -47,7 +47,7 @@ function redo_button_clicked(redo_instrument_index) {
         "instrument": instrument,
         "bpm": bpm,
         "temperature": temperature,
-        "density": density
+        //"density": density
     };
 
     // Post the command.
@@ -79,8 +79,7 @@ function play_token_sequence() {
     var temperature = get_select_button_value("temperature");
     var instrument = get_select_button_value("instrument");
     var bpm = get_select_button_value("tempo");
-    var density = get_select_button_value("density");
-
+    //var density = get_select_button_value("density");
 
     // Put everything into a JSON object.
     var json_object = {
@@ -88,7 +87,7 @@ function play_token_sequence() {
         "instrument": instrument,
         "bpm": bpm,
         "temperature": temperature,
-        "density": density
+        //"density": density
     };
 
     post_command("play", json_object, completion_callback=(response) => {
@@ -214,5 +213,95 @@ function get_select_button_value(group) {
         return instrument_buttons_in_group[0].getAttribute("value");
     }
 
-    alert("Error: No instrument selected.");
+    alert("Error: No " + group + " selected.");
+}
+
+function play_button_clicked() {
+    var audio_element = document.getElementById("audio");
+    audio_element.play();
+}
+
+function composer_loaded() {
+    
+    set_toolbar_visibility(false, false);
+
+
+
+}
+
+
+
+function set_toolbar_visibility(visible, animate=true) {
+
+    // Find div with class toolbar.
+    var toolbar = document.getElementsByClassName("toolbar")[0];
+
+    // Hide the toolbar.
+    if (visible == false) {
+        console.log("Hiding toolbar.");
+
+        if (animate == false) {
+            toolbar.style.display = "none";
+        }
+        else {
+            toolbar.style.display = "block";
+            toolbar.style.opacity = 1;
+            toolbar.style.transition = "opacity 2.0s";
+            toolbar.style.opacity = 0;
+            setTimeout(function() {
+                toolbar.style.display = "none";
+            }, 2000);
+        }
+
+        // Make sure that only the body gets the onclick event.
+        document.body.onclick = function(event) {
+            set_toolbar_visibility(true);
+            event.stopPropagation();
+        }
+    } 
+
+    // Unhide the toolbar.
+    else {
+        console.log("Showing toolbar.");
+
+        if (animate == false) {
+            toolbar.style.display = "block";
+        }
+        else {
+            toolbar.style.display = "block";
+            toolbar.style.opacity = 0;
+            toolbar.style.transition = "opacity 2.0s";
+            toolbar.style.opacity = 1;
+            setTimeout(function() {
+                toolbar.style.display = "block";
+            }, 2000);
+        }
+
+        start_or_reset_hide_toolbar_timer();
+
+        // Make that the event gets propagated beyond the body.
+        // Also ensure that the timer gets deleted and started again.
+        document.body.onclick = function(event) {
+            start_or_reset_hide_toolbar_timer();
+        }
+
+    }
+}
+
+function start_or_reset_hide_toolbar_timer() {
+    
+    // If the timer is already running, clear it.
+    if (window.hide_toolbar_timer != null) {
+        clearTimeout(window.hide_toolbar_timer);
+    }
+
+    // Start a new timer.
+    window.hide_toolbar_timer = setTimeout(function() {
+        set_toolbar_visibility(false);
+    }, 5000);
+}
+
+function is_toolbar_hidden() {
+    var toolbar = document.getElementsByClassName("toolbar")[0];
+    return toolbar.style.display == "none";
 }

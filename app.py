@@ -91,11 +91,11 @@ song_composer = Composer(tokenizer, model, device)
 default_instruments = ["INST=0", "INST=24", "INST=32", "INST=48"]
 
 # Get the densities data from the densities tokens.
-densities_data = []
-for token in [token for token in all_tokens if token.startswith("DENSITY=")]:
-    density = token.split("=")[1]
-    densities_data.append({"name": density, "token": token})
-densities_data = sorted(densities_data, key=lambda x: str(x["name"]))
+#densities_data = []
+#for token in [token for token in all_tokens if token.startswith("DENSITY=")]:
+#    density = token.split("=")[1]
+#    densities_data.append({"name": density, "token": token})
+#densities_data = sorted(densities_data, key=lambda x: str(x["name"]))
 
 app = Flask(__name__)
 
@@ -182,7 +182,7 @@ def composer():
         #cells_data=cells_data,
         #chord_progressions_data=chord_progressions,
         #chords_data=chords_data,
-        densities_data=densities_data,
+        #densities_data=densities_data,
         #instruments_data=instruments_data
     )
 
