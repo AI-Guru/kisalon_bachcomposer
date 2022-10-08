@@ -222,11 +222,8 @@ function play_button_clicked() {
 }
 
 function composer_loaded() {
-    
     set_toolbar_visibility(false, false);
     compose_button_clicked();
-
-
 }
 
 
@@ -304,7 +301,7 @@ function start_or_reset_hide_toolbar_timer() {
     // Start a new timer.
     window.hide_toolbar_timer = setTimeout(function() {
         set_toolbar_visibility(false);
-    }, 5000);
+    }, 60000);
 }
 
 function start_or_reset_compose_timer() {
