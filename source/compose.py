@@ -28,6 +28,7 @@ class Composer:
         # Get the temperature.
         temperature = float(command_parameters["temperature"])
 
+        # Get the density.
         #density = int(command_parameters["density"])
         density = DEFAULT_DENSITY
 
@@ -48,10 +49,11 @@ class Composer:
 
         # Check if everything is there.
         assert "redo_instrument_index" in command_parameters
-        #assert "density" in command_parameters
         assert "token_sequence" in command_parameters
         assert "temperature" in command_parameters
-        assert "density" in command_parameters
+
+        # Get the density.
+        density = DEFAULT_DENSITY
 
         # Map the token sequence to song data.
         song_data = self.__token_sequence_to_song_data(command_parameters["token_sequence"])

@@ -356,4 +356,4 @@ def static_from_root():
 
 if __name__ == "__main__":
     logger.info("Starting server...")
-    serve(app, host="0.0.0.0", port=5666)
+    serve(app, host="0.0.0.0", port=5777)
