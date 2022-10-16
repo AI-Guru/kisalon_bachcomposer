@@ -16,7 +16,7 @@
   <body>
     <header>
       <div id="overlay">
-        <div class="glowtext blur" style="margin: 10px">Composing...</div>
+        <div class="glowtext blur">Composing...</div>
       </div>
 
       <!-- Titel -->
@@ -36,42 +36,22 @@
     </header>
 
     <!-- Bild, SVG und Buttons -->
-    <div
-      class="glowtext blur"
-      style="
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        height: 250pt;
-      "
-    >
-      <div class>
-        <img src="/images/songimage" class="songimage" />
-      </div>
+    <div class="glowtext blur" id="image-row">
+      <img src="/images/songimage" class="songimage" />
       <div id="svg_placeholder" class="svg"></div>
     </div>
 
     <!-- 4x Button Dreiergruppen -->
-    <div
-      class="glowtext blur toolbar"
-      style="
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-      "
-    >
-      <div class="container-buttons" style="flex-direction: column">
+    <div class="glowtext blur toolbar">
+      <div class="container-buttons">
         <div class="container-button">
           <button
             class="select-button button-active"
             onclick="select_button_clicked(this)"
             group="instrument"
             value="0"
-            style="width: 125px"
           >
-            Piano
+            Klavier
           </button>
         </div>
         <div class="container-button">
@@ -80,9 +60,8 @@
             onclick="select_button_clicked(this)"
             group="instrument"
             value="6"
-            style="width: 125px"
           >
-            Harpsichord
+            Cembalo
           </button>
         </div>
         <div class="container-button">
@@ -91,23 +70,21 @@
             onclick="select_button_clicked(this)"
             group="instrument"
             value="19"
-            style="width: 125px"
           >
-            Organ
+            Orgel
           </button>
         </div>
       </div>
 
-      <div class="container-buttons" style="flex-direction: column">
+      <div class="container-buttons">
         <div class="container-button">
           <button
             class="select-button button-active"
             onclick="select_button_clicked(this)"
             group="tempo"
             value="80"
-            style="width: 125px"
           >
-            Slow
+            Langsam
           </button>
         </div>
         <div class="container-button">
@@ -116,7 +93,6 @@
             onclick="select_button_clicked(this)"
             group="tempo"
             value="100"
-            style="width: 125px"
           >
             Normal
           </button>
@@ -127,23 +103,21 @@
             onclick="select_button_clicked(this)"
             group="tempo"
             value="120"
-            style="width: 125px"
           >
-            Fast
+            Schnell
           </button>
         </div>
       </div>
 
-      <div class="container-buttons" style="flex-direction: column">
+      <div class="container-buttons">
         <div class="container-button">
           <button
             class="select-button button-active"
             onclick="select_button_clicked(this, recompose=true)"
             group="temperature"
             value="0.25"
-            style="width: 125px"
           >
-            Repetitive
+            Repetitiv
           </button>
         </div>
         <div class="container-button">
@@ -152,9 +126,8 @@
             onclick="select_button_clicked(this, recompose=true)"
             group="temperature"
             value="0.75"
-            style="width: 125px"
           >
-            Assertive
+            Forsch
           </button>
         </div>
         <div class="container-button">
@@ -163,9 +136,8 @@
             onclick="select_button_clicked(this, recompose=true)"
             group="temperature"
             value="1.0"
-            style="width: 125px"
           >
-            Experimental
+            Experimentell
           </button>
         </div>
       </div>
@@ -189,58 +161,33 @@
         </div-->
 
       <!-- Test für zwei weitere Blöcke -->
-      <div class="test-buttons">
+      <div class="big-buttons">
         <button onclick="play_button_clicked()">
           <i class="fas fa-play"></i>
         </button>
       </div>
 
-      <div class="test-buttons">
+      <div class="big-buttons">
         <button onclick="compose_button_clicked()">
           <i class="fas fa-redo" aria-hidden="true"></i>
         </button>
       </div>
 
-      <div
-        class="container-buttons"
-        style="display: flex; flex-direction: column; height: 100%"
-      >
-        <div class="container-button voicebutton">
-          <button
-            class=""
-            onclick="redo_button_clicked(0)"
-            style="width: 50pt; height: 50pt; background-color: #f5da4b"
-          >
-            <i class="fas fa-redo" aria-hidden="true"></i>
-          </button>
-        </div>
-        <div class="container-button voicebutton">
-          <button
-            class=""
-            onclick="redo_button_clicked(3)"
-            style="width: 50pt; height: 50pt; background-color: #e45b2e"
-          >
-            <i class="fas fa-redo" aria-hidden="true"></i>
-          </button>
-        </div>
-        <div class="container-button voicebutton">
-          <button
-            class=""
-            onclick="redo_button_clicked(1)"
-            style="width: 50pt; height: 50pt; background-color: #b63655"
-          >
-            <i class="fas fa-redo" aria-hidden="true"></i>
-          </button>
-        </div>
-        <div class="container-button voicebutton">
-          <button
-            class=""
-            onclick="redo_button_clicked(2)"
-            style="width: 50pt; height: 50pt; background-color: #892169"
-          >
-            <i class="fas fa-redo" aria-hidden="true"></i>
-          </button>
-        </div>
+      <div class="voice-buttons">
+        <button class="" onclick="redo_button_clicked(0)" id="v1">
+          <i class="fas fa-redo" aria-hidden="true"></i>
+        </button>
+        <button class="" onclick="redo_button_clicked(3)" id="v2">
+          <i class="fas fa-redo" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div class="voice-buttons">
+        <button class="" onclick="redo_button_clicked(1)" id="v3">
+          <i class="fas fa-redo" aria-hidden="true"></i>
+        </button>
+        <button class="" onclick="redo_button_clicked(2)" id="v4">
+          <i class="fas fa-redo" aria-hidden="true"></i>
+        </button>
       </div>
     </div>
 
