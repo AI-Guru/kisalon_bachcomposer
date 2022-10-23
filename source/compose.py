@@ -15,8 +15,6 @@ class Composer:
 
     def compose_song(self, command_parameters):
 
-        print(command_parameters["temperature"])
-
         instrument_tokens = ["INST=0", "INST=24", "INST=32", "INST=48"]
 
         # Get the tokens. 
@@ -188,7 +186,6 @@ class Composer:
         eos_token_id = self.tokenizer.encode(end_token)[0] if "end_token" != None else None
 
         # Generate.
-        print(temperature)
         generated_token_sequence = self.model.generate(
             input_ids,
             max_length=2048,

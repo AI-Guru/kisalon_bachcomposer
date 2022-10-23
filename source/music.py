@@ -66,8 +66,6 @@ def token_sequence_to_note_sequence(token_sequence, bpm, use_program=True, use_d
 
     note_sequence = empty_note_sequence(qpm=bpm)
 
-    print("ACHTUNG bpm", bpm)
-
     note_length_bpm = 0.25 * 60 / bpm
     bar_length_bpm = 4.0 * 60 / bpm
 

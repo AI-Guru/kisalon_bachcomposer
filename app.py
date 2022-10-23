@@ -48,6 +48,9 @@ import traceback
 import datetime
 from waitress import serve
 
+# Authentication.
+use_authentication = False
+
 
 # Create the logger.
 logger = logging.create_logger(__name__)
@@ -113,6 +116,9 @@ def get_active_tokens_dict():
 
 def is_authorized(authorization_token):
 
+    if use_authentication == False:
+        return True
+
     active_tokens_dict = get_active_tokens_dict()
 
     if not authorization_token:
@@ -147,6 +153,10 @@ def get_user_name(authorization_token):
 
 @app.route("/")
 def index():
+    if use_authentication == False:
+        redirect_url = url_for("composer")
+        return redirect(redirect_url)
+
     return render_template("login.html")
 
 @app.route("/auth", methods=["POST"])
