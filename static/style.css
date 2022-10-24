@@ -5,7 +5,7 @@ body {
   /* A blurred background image. */
   background-image: url("background.jpg");
   background-attachment: fixed;
-  padding: 70px 0 0 0;
+  padding: 0px 0 0 0;
 }
 
 h1 {

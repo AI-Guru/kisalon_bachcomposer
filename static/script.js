@@ -25,6 +25,8 @@ function compose_button_clicked() {
 
 function redo_button_clicked(redo_instrument_index) {
 
+    set_busy(true);
+
     // Get the values.
     var temperature = get_select_button_value("temperature");
     var instrument = get_select_button_value("instrument");
@@ -51,7 +53,9 @@ function redo_button_clicked(redo_instrument_index) {
     };
 
     // Post the command.
-    post_command(command_name, command_parameters);
+    post_command(command_name, command_parameters, completion_callback=(response) => {
+        set_busy(false);
+    } );
 
 }
 
@@ -222,7 +226,8 @@ function play_button_clicked() {
 }
 
 function composer_loaded() {
-    set_toolbar_visibility(false, false);
+    //set_toolbar_visibility(false, false);
+    set_toolbar_visibility(true, false);
     compose_button_clicked();
 }
 
@@ -251,13 +256,13 @@ function set_toolbar_visibility(visible, animate=true) {
             }, 2000);
         }
 
-        start_or_reset_compose_timer();
+        //start_or_reset_compose_timer();
 
         // Make sure that only the body gets the onclick event.
-        document.body.onclick = function(event) {
-            set_toolbar_visibility(true);
-            event.stopPropagation();
-        }
+        //document.body.onclick = function(event) {
+        //    set_toolbar_visibility(true);
+        //    event.stopPropagation();
+        //}
     } 
 
     // Unhide the toolbar.
@@ -278,15 +283,15 @@ function set_toolbar_visibility(visible, animate=true) {
             }, 2000);
         }
 
-        start_or_reset_hide_toolbar_timer();
+        //start_or_reset_hide_toolbar_timer();
 
-        stop_compose_timer();
+        //stop_compose_timer();
 
         // Make that the event gets propagated beyond the body.
         // Also ensure that the timer gets deleted and started again.
-        document.body.onclick = function(event) {
-            start_or_reset_hide_toolbar_timer();
-        }
+        //document.body.onclick = function(event) {
+        //    start_or_reset_hide_toolbar_timer();
+        //}
 
     }
 }
@@ -305,17 +310,17 @@ function start_or_reset_hide_toolbar_timer() {
 }
 
 function start_or_reset_compose_timer() {
-        
-        // If the timer is already running, do nothing.
-        if (window.compose_timer != null) {
-            clearTimeout(window.compose_timer);
-        }
-    
-        // Start a new timer.
-        window.compose_timer = setTimeout(function() {
-            compose_button_clicked();
-            start_or_reset_compose_timer();
-        }, 20000);
+
+    // If the timer is already running, do nothing.
+    if (window.compose_timer != null) {
+        clearTimeout(window.compose_timer);
+    }
+
+    // Start a new timer.
+    window.compose_timer = setTimeout(function() {
+        compose_button_clicked();
+        start_or_reset_compose_timer();
+    }, 20000);
 }
 
 function stop_compose_timer() {
