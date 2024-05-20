@@ -25,7 +25,7 @@ from flask import (
     url_for,
     send_from_directory
 )
-from flask_security import current_user, auth_token_required
+#from flask_security import current_user, auth_token_required
 
 import os
 from transformers import AutoTokenizer, AutoModelForCausalLM
@@ -137,6 +137,9 @@ def is_authorized(authorization_token):
 
 
 def get_user_name(authorization_token):
+    
+    if use_authentication == False:
+        return "Anonymous"
 
     active_tokens_dict = get_active_tokens_dict()
 
