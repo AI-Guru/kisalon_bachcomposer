@@ -1,6 +1,8 @@
 # kisalon_bachcomposer
 ## Copyright 2022 Dr. Tristan Behrens
 
+![](static/songimage.jpg)
+
 Here is a video:
 https://www.youtube.com/watch?v=z1p4dhLLMYg
 
