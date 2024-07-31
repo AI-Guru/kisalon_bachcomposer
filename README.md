@@ -1,6 +1,12 @@
 # kisalon_bachcomposer
 ## Copyright 2022 Dr. Tristan Behrens
 
+Here is a video:
+https://www.youtube.com/watch?v=z1p4dhLLMYg
+
+## Installation
+
+The best way to get everything up and running is Docker.
 
 Build the docker container: 
 
